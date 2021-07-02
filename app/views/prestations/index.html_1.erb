@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Prestations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Prestationtype</th>
+      <th>Prestationtypecolumn</th>
+      <th>Price</th>
+      <th>Length</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @prestations.each do |prestation| %>
+      <tr>
+        <td><%= prestation.name %></td>
+        <td><%= prestation.prestationtype_id %></td>
+        <td><%= prestation.prestationtypecolumn %></td>
+        <td><%= prestation.price %></td>
+        <td><%= prestation.length %></td>
+        <td><%= link_to 'Show', prestation %></td>
+        <td><%= link_to 'Edit', edit_prestation_path(prestation) %></td>
+        <td><%= link_to 'Destroy', prestation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Prestation', new_prestation_path %>

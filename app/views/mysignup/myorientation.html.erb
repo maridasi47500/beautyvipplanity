@@ -1,0 +1,21 @@
+
+
+      <%= form_for(resource, as: resource_name, url: updateinfo_path(current_user ? current_user.id : @user), html: { class:"interested", method: :put }) do |form| %>
+       <div class="field">
+
+               <%=form.check_box("interestedwomen")%>
+    <%=form.label("interestedwomen", "Femmes")%>
+
+    </div>    
+    <div class="field">
+    <%=form.check_box("interestedmen")%>
+    <%=form.label("interestedmen", "Hommes")%>
+
+    </div>
+               <div class="field">
+    <%=button_tag "Annuler", onclick: "$.ajax({type:'post',url: $(this).parent().parent().attr('action')+'?cancel=true&view=myorientation',success: function(data){$('.interested')[0].outerHTML=data;}});return false;"%>
+    <%=form.submit "Enregistrer", onclick: "$.ajax({type:'post',url: $(this).parent().parent().attr('action')+'?view=myorientation&'+$(this).parent().parent().serialize(),success: function(data){$('.interested')[0].outerHTML=data;}});return false;"%>
+
+    </div>
+
+<%end%>

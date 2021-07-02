@@ -1,0 +1,42 @@
+<div class="card-header bg-transparent border-success">Choisir ma photo de profil<span onclick="off(event);return false;" class="close">&times;</span></div>
+
+         <%= form_for(resource, as: resource_name, url: updateinfo_path(current_user ? current_user.id : @user.id), html: { class: " myphototodisplay", method: :put }) do |g| %>
+                <div class="d-flex align-items-center row row-cols-6 row-cols-md-6 g-4">
+  <div class="col  d-flex align-items-center">
+    <div class="card">
+
+                <img src="<%=@image.name%>" width="100" height="100" class="card-img-top" alt="<%=current_user.fullname%> photos">
+    </div>
+    </div>
+    </div>
+            <div class="field">
+
+      <%=g.hidden_field :image_id, value: @image.id%>
+      </div>
+      <div class="field">
+      <%=button_tag "annuler", onclick: "cancel(event);return false;"%>
+      <%=g.submit "envoyer", onclick: "chosethisphoto(event);return false;"%>
+      </div>
+<%end%>
+      
+      
+      <script>
+        function chosethisphoto(e) {
+        $.ajax({type:'post',url:'<%=updateinfo_path(current_user ? current_user.id : @user.id)%>?'+$('.myphototodisplay').serialize()+'&cancel=true&view=myphotos',
+          success:function(data){$('.photocontainer').html(data);
+          $('.close').click();
+ var images=document.getElementsByClassName('postcommentphotodeprofil');
+        var myimagesrc=document.getElementsByClassName('photodeprofil')[0].src;
+        for (var i = 0; i<images.length;i++) {
+          console.log(images[i]);
+          images[i].src = String(myimagesrc);
+        }
+            }
+        });
+        }
+        function cancel(e) {
+        $.ajax({url:'<%=myphotos_path%>',
+          success:function(data){$('.myformpost').html(data);}
+        });
+        }
+      </script>

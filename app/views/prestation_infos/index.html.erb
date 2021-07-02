@@ -1,0 +1,116 @@
+<p id="notice"><%= notice %></p>
+<div class="imagesdeck">
+  <%=link_to images_path do%>
+<%= render partial: 'images/image', collection: Prestation.joins(:images).select('images.*').distinct, as: :image %>
+<%end%>
+</div>
+<h2>Bar à ongles</h2>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @baraongle.each do |prestation_info,prestation| %>
+          
+            <% prestation.each_with_index do |presta,i| %>
+
+            <%if i == 0%>
+                        <tr>
+                                                                  <td> 
+
+            <%= prestation_info.upcase%>
+                      
+                                                </td>
+                                                                  <td> 
+
+                          </td>
+
+                          </tr>
+
+            <%end%>
+                  <tr>
+
+                  <td> 
+
+                      <%=presta.name%>
+
+                          </td>
+    
+        
+        <td><%=presta.price%></td>
+       <td>edit <%=link_to "edit", edit_prestation_path(presta.id)%></td>
+              </tr>
+
+                    <% end %>
+
+    <% end %>
+                <tr><td> REMISE ETUDIANTS</td>
+    <td>-10%</td>
+              </tr>
+  <tr><td> DU LUNDI AU JEUDI</td>
+    <td></td>
+              </tr>
+
+  </tbody>
+</table>
+<h2>Epilation</h2>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @epilation.each do |prestation_info,prestation| %>
+          
+            <% prestation.each_with_index do |presta,i| %>
+
+            <%if i == 0%>
+                        <tr>
+                                                                  <td> 
+
+            <%= prestation_info.upcase%>
+                      
+                                                </td>
+                                                                  <td> 
+
+                          </td>
+
+                          </tr>
+
+            <%end%>
+                  <tr>
+
+                  <td> 
+
+                      <%=presta.name%>
+
+                          </td>
+    
+        
+        <td><%=presta.price%></td>
+       <td>edit <%=link_to "edit", edit_prestation_path(presta.id)%></td>
+              </tr>
+
+                    <% end %>
+
+    <% end %>
+                <tr><td> REMISE ETUDIANTS</td>
+    <td>-10%</td>
+              </tr>
+  <tr><td> DU LUNDI AU JEUDI</td>
+    <td></td>
+              </tr>
+
+  </tbody>
+</table>
+<br>
+

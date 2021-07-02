@@ -1,0 +1,2 @@
+class Epilation < Prestation
+end

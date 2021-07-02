@@ -1,0 +1,36 @@
+
+<div class="row row-cols-1 row-cols-md-1 g-4  ">
+                     <div class="col">
+
+                         <div class="card">
+                                 <p id="notice"><%= notice %></p>
+
+              <div class="card-body">
+
+
+         <h2>
+  <%= @album.title %>
+</h2>
+              </div>
+            </div>
+            </div>
+
+</div>
+<div class="row row-cols-4 row-cols-md-4 g-4 myphotoswrap ">
+
+                 <div class="col">
+
+            <div class="card">
+              <div class="card-body">
+
+
+                  <h3 class="card-title"><%= link_to 'Ajouter des photos', addphotostoalbum_page_path(id: @album.id)%></h3>
+              </div>
+            </div>
+            </div>
+
+<%=render partial: "images/imagealbum", collection: @album.images, as: :image%>
+
+</div>
+
+<%= link_to 'Back', albums1_page_path %>

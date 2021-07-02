@@ -1,0 +1,15 @@
+
+         <%= form_for(resource, as: resource_name, url: updatebio_path(current_user ? current_user.id : @user), html: { class: "", method: :post, onsubmit: "$.ajax({type:'post', url: $(this).attr('action')+'?'+$(this).serialize(),success: function(data){$('.addbio').html(data);}});return false;" }) do |f| %>
+
+
+<div class="field">
+    <%= f.label :bio, "Edit your bio" %> 
+    <%= f.text_area :bio %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Edit" %>
+  </div>
+<% end %>
+
+

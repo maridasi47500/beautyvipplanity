@@ -1,0 +1,41 @@
+<%= form_with(model: album, local: true,html:{class: "myalbumsphotos"}) do |form| %>
+  <% if album.errors.any? %>
+    <div id="error_explanation">
+      <h2>You can't save this album.</h2>
+
+      <ul>
+        <% album.errors.messages.values.flatten.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <fieldset form="myalbumsphotos2id">
+  <div class="field mytitlealbumfield">
+    <%#= form.label :title, "Titre de l'album", required: true, minlength: "5" %>
+    <%#= form.text_field :title %>
+  </div>
+ </fieldset>
+
+  <div class="field">
+    <%= form.label :images, "Importez des photos ou des vidéos" %>
+    <%= form.file_field :images, multiple: true, onchange: "fileselectededit();return false;", required: true %>
+  </div>
+
+
+<% end %>
+  <div class="actions">
+  <button type="submit" form="myalbumsphotos2id">Valider</button>
+  </div>
+
+<script>
+  function fileselectededit() {
+                  var formData = new FormData($('.myalbumsphotos')[0]);
+                          event.preventDefault();
+          $.ajax({processData: false,data:formData,
+            contentType: false,
+url:'<%=pictureofthem2_page_path(params[:id])%>',type:'post',success:function(data){$('.myphotoswrap').append(data);},complete:function(){ $('.close').click();}});
+        return false;
+  }
+  </script>

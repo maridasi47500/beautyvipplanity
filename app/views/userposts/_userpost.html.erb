@@ -1,0 +1,50 @@
+
+<div class="card " style="">
+  <div class="card-header"><%=userpost.users[0] ? (render userpost.users[0]) : ""%></div>
+  <div class="card-body">
+    <h5 class="card-title">    
+<%if userpost.users.include?(current_user)%>
+<%= link_to 'Edit my userpost', edit_userpost_path(userpost,myuserpost: true), onclick: "on(event);$.ajax({url: $(this).attr('href'),success: function(data){$('.myformpost').html(data);}});return false;", class: "btn btn-primary" %>
+<%end%>
+    </h5>
+    
+      <p class="card-text"><%=userpost.mycontent%></p>
+      <%= link_to 'Show my userpost', userpost, class: "btn btn-primary" %>
+      
+
+  </div>
+    <%userpost.images.each do |image|%>
+    <img  src="<%=image.name%>" class="card-img-top" alt="<%=image.description%>"/>
+  <%end%>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item myitems">
+    <%= form_with(model: userpost, local: true, html: {id: "mybeautyuserpost#{userpost.id}", data: {id: userpost.id}}) do |form| %>
+  <%= form.fields_for :comments, Comment.new do |image|%>
+    <%= image.hidden_field :user_ids, value: current_user.id %>
+
+        <%= image.text_area :content, cols: 30, onkeydown:"pressed(event)", onkeyup: "expandTextarea(event);return false;", rows: 1, placeholder: "Commenter en tant que visiteur", class: "mycontent-comment" %>
+  <%end%>
+    <%= form.submit "Publier", class: "btnpublication btn btn-primary", hidden: true %>
+<% end %>
+
+    
+    </li>
+    <div class="mynew<%=userpost.id%>" hidden="true"></div>
+        <%userpost.comments.where.not(content: [nil,""]).reverse.each do |comment|%>
+        <li data-commentid="<%=comment.id%>" class="mynewuserpostcomment<%=comment.id%> list-group-item myitems">
+            <%if @mycommentids[userpost.id.to_s].to_s == comment.id.to_s%>
+    <%= form_with(model: userpost, local: true, html: {id: "mybeautyuserpost#{userpost.id}", data: {id: userpost.id}}) do |form| %>
+  <%= form.fields_for :comments, comment do |image|%>
+    <%= image.hidden_field :user_ids, value: current_user.id %>
+
+        <%= image.text_area :content, cols: 30, onkeydown: "pressed(event)", onkeyup: "expandTextarea(event);return false;", rows: 1, placeholder: "Commenter en tant que visiteur", class: "mycontent-comment" %>
+  <%end%>
+    <%= form.submit "Publier", class: "btnpublication btn btn-primary", hidden: true %>
+<% end %>
+            <%else%>
+<%=render comment%>
+              <%end%>
+        </li>
+    <%end%>
+  </ul>
+</div>

@@ -1,0 +1,13 @@
+<%= form_with(model: image,url: sendimage_path(image.id), html: {id: "form-image#{@image.id}"}) do |form| %>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, class: "mycontent" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Edit", onclick: "$.ajax({type: $('#form-image#{image.id}').attr('method'),url: $('#form-image#{image.id}').attr('action')+'?'+$('#form-image#{image.id}').serialize(),success: function(data){$('.adddesc').html(data);}});return false;"%>
+    <%= form.submit "Annuler", onclick: "$.ajax({type: $('#form-image#{image.id}').attr('method'),url: $('#form-image#{image.id}').attr('action')+'?cancel=true',success: function(data){$('.adddesc').html(data);}});return false;"%>
+  </div>
+<% end %>
+

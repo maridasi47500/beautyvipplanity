@@ -1,0 +1,26 @@
+<%= form_with(model: review, local: true) do |form| %>
+  <% if review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+        <% review.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <%= form.text_area :content, placeholder: (params[:action] == "recommend" ? "Que recommandez-vous concernant Beauty vip La Garde Hyères ?" : "Donnez votre avis sur Beauty vip La Garde Hyères"), class: "mycontent" %>
+<div>
+<%=form.collection_check_boxes(:amenity_ids, Amenity.all, :id, :name, {}, {class: "btn-check", autocomplete: "off"}) do |ok|%>
+<%= ok.check_box %>
+      <%= ok.label(class: "btn btn-secondary")%>
+<%end%>
+</div>
+    <%= form.hidden_field :positive, value: review.mytypereview(params), hidden: true %>
+    <%= form.hidden_field :user_ids, value: current_user.id %>
+
+  <div class="actions mybtnreview">
+    <%= form.submit "Publier", class: "btnreview btn btn-primary" %>
+  </div>
+<% end %>

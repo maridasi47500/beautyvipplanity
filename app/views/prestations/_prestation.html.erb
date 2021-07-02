@@ -1,0 +1,22 @@
+
+<div class="col">
+
+<div class="card mb-3" style="">
+  <div class="row g-0">
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= prestation.name %></h5>
+        <p class="card-text"><%= prestation.description %> </p>
+        <p class="card-text"><%= prestation.myduration %> . <%= prestation.price %></p>
+        <p class="card-text"><%= prestation.durationtype %> </p>
+      </div>
+    </div>
+      <%prestation.images.each do |im|%>
+          <div class="col-md-4">
+              
+      <img src="<%=im.name%>" width=100 height=100 alt="<%=im.description%>">
+    </div>
+<%end%>
+  </div>
+</div>
+</div>

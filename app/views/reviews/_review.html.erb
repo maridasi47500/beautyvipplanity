@@ -1,0 +1,47 @@
+
+<div class="card" style="">
+  <div class="card-header"><%=review.users[0] ? (render review.users[0]) : ""%><%=review.recommende%> Beauty vip la garde hyères</div>
+
+  <div class="card-body">
+
+    <p class="card-text"><%=review.content%></p>
+      <%= link_to 'Show my review', review, class: "btn btn-primary" %>
+    <%if review.users.include?(current_user)%>
+      <%= link_to 'Edit my review', edit_review_path(review), class: "btn btn-primary" %>
+    <%end%>
+    <p class="card-text"><%=review.myamenities.html_safe%></p>
+
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item myitems">
+    <%= form_with(model: review, local: true, html: {id: "mybeautyreview#{review.id}", data: {id: review.id}}) do |form| %>
+  <%= form.fields_for :comments, Comment.new do |image|%>
+    <%= image.hidden_field :user_ids, value: current_user.id %>
+
+        <%= image.text_area :content, cols: 30, onkeydown:"pressedreview(event)", onkeyup: "expandTextarea(event);return false;", rows: 1, placeholder: "Commenter en tant que visiteur", class: "mycontent-comment" %>
+  <%end%>
+    <%= form.submit "Publier", class: "btnpublication btn btn-primary", hidden: true %>
+<% end %>
+
+    
+    </li>
+    <div class="mynew<%=review.id%>" hidden="true"></div>
+        <%review.comments.where.not(content: [nil,""]).reverse.each do |comment|%>
+        <li data-commentid="<%=comment.id%>" class="mynewcomment<%=comment.id%> list-group-item myitems">
+            <%if @mycommentids[review.id.to_s].to_s == comment.id.to_s && comment.user_id%>
+    <%= form_with(model: review, local: true, html: {id: "mybeautyreview#{review.id}", data: {id: review.id}}) do |form| %>
+  <%= form.fields_for :comments, comment do |image|%>
+    <%= image.hidden_field :user_ids, value: current_user.id %>
+
+        <%= image.text_area :content, cols: 30, onkeydown: "pressedreview(event)", onkeyup: "expandTextarea(event);return false;", rows: 1, placeholder: "Commenter en tant que visiteur", class: "mycontent-comment" %>
+  <%end%>
+    <%= form.submit "Publier", class: "btnpublication btn btn-primary", hidden: true %>
+<% end %>
+            <%else%>
+            <%=render comment%>
+        <%end%>
+        </li>
+    <%end%>
+  </ul>
+
+</div>

@@ -1,0 +1,66 @@
+<div class="card-header  bg-transparent border-success"><h3>Mes photos de paysage</h3><span onclick="off(event);return false;" class="close">&times;</span></div>
+
+         <%= form_for(resource, as: resource_name, url: updateinfo_path(current_user ? current_user.id : @user.id), html: { class: " d-flex align-items-center myphotos", method: :put }) do |g| %>
+      <%=g.label :image, "image de profil"%>
+      <%=g.file_field :image%>
+      <%=hidden_field_tag :view, "myphotos"%>
+      
+      <%=g.submit "envoyer", onclick: "mylandscape2(event);return false;"%>
+<%end%>
+         <%= form_for(resource, as: resource_name, url: updateinfo_path(current_user ? current_user.id : @user.id), html: { class: " d-flex align-items-center mylandscapephotos", method: :put }) do |g| %>
+      <%=g.label :bannerimage, "Image du paysage"%>
+      <%=g.file_field :bannerimage%>
+      <%=hidden_field_tag :view, "myphotos"%>
+      
+      <%=g.submit "envoyer", onclick: "mylandscape(event);return false;"%>
+<%end%>
+      <h3>Importées</h3>
+      <div class="d-flex align-items-center row row-cols-6 row-cols-md-6 g-4">
+          <%current_user.imagesimportees.each do |image|%>
+  <div class="col  d-flex align-items-center">
+    <div class="card">
+        <%= link_to "", data: {imageid: image.id}, onclick: "chosemyphoto(event);return false;" do %>
+      <img src="<%=image.name%>" width="100" height="100" class="card-img-top" alt="<%=current_user.fullname%> photos">
+      <%end%>
+    </div>
+  </div>
+          <%end%>
+      </div>
+      
+      
+      <script>
+        function chosemyphoto(e) {
+          console.log(e.target.parentElement);
+          console.log(e.target.parentElement.dataset.imageid);
+        $.ajax({url:'<%=chosemyphoto_path%>?imageid='+String(e.target.parentElement.dataset.imageid),
+            success:function(data){$('.myformpost').html(data);}
+      });
+        return false;
+        }
+        function mylandscape(e) {
+                  var formData = new FormData($('.mylandscapephotos')[0]);
+                          event.preventDefault();
+          $.ajax({processData: false,data:formData,
+            contentType: false,
+url:'<%=updateinfo_path(current_user ? current_user.id : @user.id)%>?cancel=true&view=myphotos',type:'post',success:function(data){$('.photocontainer').html(data);},complete:function(){ $('.close').click();
+  
+  }});
+        return false;
+      }
+        function mylandscape2(e) {
+                  var formData = new FormData($('.myphotos')[0]);
+                          event.preventDefault();
+          $.ajax({processData: false,
+            data:formData,
+            contentType: false,url:'<%=updateinfo_path(current_user ? current_user.id : @user.id)%>?cancel=true&view=myphotos',type:'post',success:function(data){$('.photocontainer').html(data);
+            },complete:function(){ $('.close').click();
+ var images=document.getElementsByClassName('postcommentphotodeprofil');
+        var myimagesrc=document.getElementsByClassName('photodeprofil')[0].src;
+        for (var i = 0; i<images.length;i++) {
+          console.log(images[i]);
+          images[i].src = String(myimagesrc);
+        }            
+}});
+        return false;
+      }
+      </script>

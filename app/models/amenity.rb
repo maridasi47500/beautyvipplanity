@@ -1,0 +1,3 @@
+class Amenity < ApplicationRecord
+  
+end

@@ -1,0 +1,8 @@
+  <%=reviewcomment.users[0] ? (render reviewcomment.users[0]) : ""%>
+
+            <%=reviewcomment.content%> 
+    <%if reviewcomment.users.include?(current_user)%>
+          
+  <%=link_to "Edit", editcomment_review_path(review.id, commentid: reviewcomment.id), onclick: "$.ajax({url: $(this).attr('href'),success: function(data){$('.mynewreviewcomment#{reviewcomment.id}')[0].outerHTML=(data);}});return false;"%>
+
+<%end%>

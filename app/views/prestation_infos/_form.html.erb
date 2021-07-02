@@ -1,0 +1,44 @@
+<%= form_with(model: prestation_info, local: true) do |form| %>
+  <% if prestation_info.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(prestation_info.errors.count, "error") %> prohibited this prestation_info from being saved:</h2>
+
+      <ul>
+        <% prestation_info.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :length %>
+    <%= form.text_field :length %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+  <div class="field">
+    <%= form.label :prestationtypecolumn %>
+    <%= form.select :prestationtypecolumn, [['Bar à ongles', "BarAOngle"], ['Epilation', "Epilation"]], checked: params[:prestationtypecolumn] %>
+  </div>
+  <div class="field">
+    <%= form.label :prestationtype_id %>
+    <%= form.collection_select :prestationtype_id, Prestationtype.all, :id, :name %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%= image_tag "servicesbeautyvip-1.jpeg" %>
+<%= image_tag "servicesbeautyvip.jpeg" %>
+<%= image_tag  "beautyvipprestations2.jpeg" %>

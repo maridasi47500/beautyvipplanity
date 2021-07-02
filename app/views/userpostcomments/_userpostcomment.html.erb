@@ -1,0 +1,8 @@
+  <%= render userpostcomment.users%>
+
+            <%=userpostcomment.content%> 
+            
+  <%if userpostcomment.users.include?(current_user)%>
+  <%=link_to "Edit", editcomment_userpost_path(userpostcomment.post.id, commentid: userpostcomment.id), onclick: "$.ajax({url: $(this).attr('href'),success: function(data){$('.mynewuserpostcomment#{userpostcomment.id}')[0].outerHTML=(data);}});return false;"%>
+
+<%end%>

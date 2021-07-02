@@ -1,0 +1,4 @@
+              <%=@image.description%>
+              <br/>
+              <%=link_to ('Editer ma description'), adddesc_path(@image.id), onclick: "$.ajax({url: $(this).attr('href'),success: function(data){$('.adddesc').html(data);}});return false;"%></p>
+

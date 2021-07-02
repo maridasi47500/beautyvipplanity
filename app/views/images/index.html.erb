@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+  <div class="col">
+    <div class="card">
+    <div class="card-header">
+        <h1>Albums</h1>
+    </div>
+    <div class="card-header">
+        <%=link_to "Voir tout", albums1_page_path%>
+    </div>
+
+<div class="row row-cols-4 row-cols-md-3 g-4">
+            <%= render partial: "pagealbums/pagealbum",collection: Page.first.fourfirstalbums, as: :album%>
+
+</div>
+</div>
+</div>
+
+  <div class="col">
+    <div class="card">
+    <div class="card-header">
+        <h1>Toutes les photos</h1>
+    </div>
+
+<div class="row row-cols-4 row-cols-md-3 g-4">
+        <% @images.each do |images| %>
+
+  <div class="col">
+    <div class="card">
+      <img src="<%=images.name%>" class="card-img-top" alt="<%=images.description%>">
+    </div>
+  </div>
+        <%end%>
+
+</div>
+</div>
+</div>
+
+
+<br>
+

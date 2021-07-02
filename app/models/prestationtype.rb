@@ -1,0 +1,2 @@
+class Prestationtype < ApplicationRecord
+end

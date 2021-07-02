@@ -1,0 +1,10 @@
+        <ul class="fa-ul card-text mydatefield">
+            
+    <li class="birthday"><span><%=(@user).shortdate%></span></li>
+
+  <li class="nobullet attrname"><span>Date de naissance</span></li>
+    <li class="nobullet"><span><%=(@user).year%></span></li>
+  <li class="nobullet attrname"><span>Année de naissance</span></li>
+    <li class="addtolist nobullet"><span><%=link_to "Editez votre date de naissance", mydatefield_path, onclick: "mydatefield(event);return false;"%></span></li>
+</ul>
+            

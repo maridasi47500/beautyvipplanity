@@ -1,0 +1,12 @@
+
+<ul class="fa-ul card-text interested">
+    <%if @user.interestedwomen%>
+  <li class="women nobullet"><span>Femmes</span></li>
+    <%end%>
+
+    <%if @user.interestedmen%>
+  <li class="men nobullet"><span>Hommes</span></li>
+    <%end%>
+  
+  <li class="addtolist nobullet"><span><%=link_to "Ajoutez qui vous intéresse", myorientation_path, onclick: "myorientation(event);return false;"%></span></li>
+    </ul>

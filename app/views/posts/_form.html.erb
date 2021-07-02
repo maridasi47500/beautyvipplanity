@@ -1,0 +1,34 @@
+    <div class="">
+
+
+<%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <%= form.hidden_field :user_ids, value: current_user.id %>
+
+  <div class="field">
+    <%# form.label :content %>
+    <%= form.text_area :content, placeholder: "Écrivez quelque chose à Beauty vip La Garde Hyères...", class: "mycontent" %>
+  </div>
+<div class="card">
+  <div class="card-body">
+  <%= form.fields_for :images do |image|%>
+    <%= image.label :name, "Ajouter à votre publication" %>
+    <%= image.file_field :name %>
+  <%end%>
+  </div>
+</div>
+  <div class="actions">
+    <%= form.submit "Publier", class: "btnpublication btn btn-primary" %>
+  </div>
+<% end %>
+</div>

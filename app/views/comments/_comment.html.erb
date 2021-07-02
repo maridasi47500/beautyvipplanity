@@ -1,0 +1,8 @@
+  <%= render comment.users%>
+
+            <%=comment.content%> 
+            
+  <%if comment.users.include?(current_user)%>
+  <%=link_to "Edit", editcomment_post_path(comment.post.id, commentid: comment.id), onclick: "$.ajax({url: $(this).attr('href'),success: function(data){$('.mynewcomment#{comment.id}')[0].outerHTML=(data);}});return false;"%>
+
+<%end%>

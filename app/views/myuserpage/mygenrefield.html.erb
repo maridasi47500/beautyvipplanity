@@ -1,0 +1,10 @@
+     
+      <ul class="fa-ul card-text mygenrefield">
+  <%if (current_user || @user).displaygenre%>
+    <li class="women"><span><%=(current_user || @user).genrevalue%></span></li>
+  <li class="nobullet attrname"><span>Genre</span></li>
+  <%end%>
+      <li class="addtolist nobullet"><span><%=link_to "Editez votre genre", mygenrefield_path, onclick: "mygenre(event);return false;"%></span></li>
+
+    </ul>
+               

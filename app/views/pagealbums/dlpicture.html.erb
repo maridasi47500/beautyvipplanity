@@ -1,0 +1,25 @@
+            <%= fields_for :pagealbum, @newalbum do |album| %>
+<%@images.each do |image|%>
+              <%=album.fields_for :images, image do |myimg|%>
+ <%=myimg.hidden_field :myname%>
+ <%=myimg.hidden_field :type%>
+
+<div class="col">
+    <div class="card">
+        <%if image.is_a?(Video)%>
+      <video src="<%=image.name%>" class="myvideo img-responsive" controls alt="...">
+
+        <%else%>
+      <img src="<%=image.name%>" class="card-img-top" alt="...">
+      <%end%>
+      <div class="card-body">
+          <p class="card-text">
+<%=myimg.text_area :description%>
+              
+          </p>      
+      </div>
+    </div>
+  </div>
+    <%end%>
+    <%end%>
+              <%end%>

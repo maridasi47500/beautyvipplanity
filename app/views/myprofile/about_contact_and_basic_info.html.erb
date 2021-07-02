@@ -1,0 +1,78 @@
+        <div class="row  row-cols-2 row-cols-md-1 g-4">
+             <div class="col">
+
+            <div class="card mb-3" style="width: 100%;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <div class="card-body">
+        <h5 class="card-title">A propos</h5>
+        <p class="card-text">Informations générales et coordonnées</p>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h3 class="card-title">Infos générales</h3>
+<ul class="fa-ul card-text mygenrefield">
+    <%if current_user.displaygenre%>
+
+    <li class="women"><span><%=current_user.genrevalue%></span></li>
+  <li class="nobullet attrname"><span>Genre</span></li>
+  <%end%>
+    <li class="addtolist nobullet"><span><%=link_to "Editez votre genre", mygenrefield_path, onclick: "mygenre(event);return false;"%></span></li>
+
+    </ul>
+        <ul class="fa-ul card-text mydatefield">
+            
+    <li class="birthday"><span><%=current_user.shortdate%></span></li>
+
+  <li class="nobullet attrname"><span>Date de naissance</span></li>
+    <li class="nobullet"><span><%=current_user.year%></span></li>
+  <li class="nobullet attrname"><span>Année de naissance</span></li>
+    <li class="addtolist nobullet"><span><%=link_to "Editez votre date de naissance", mydatefield_path, onclick: "mydatefield(event);return false;"%></span></li>
+
+</ul>
+                <h3 class="card-title">Intéressée par</h3>
+<ul class="fa-ul card-text interested">
+    <%if current_user.interestedwomen%>
+  <li class="women nobullet"><span>Femmes</span></li>
+    <%end%>
+
+    <%if current_user.interestedmen%>
+  <li class="men nobullet"><span>Hommes</span></li>
+    <%end%>
+
+  <li class="addtolist nobullet"><span><%=link_to "Ajoutez qui vous intéresse", myorientation_path, onclick: "myorientation(event);return false;"%></span></li>
+    </ul>
+
+      </div>
+    </div>
+  </div>
+</div>
+            </div>
+                
+             
+           
+
+          
+                
+
+        </div>
+
+<script>
+  function myorientation(e) {
+    $.ajax({url: e.target.href,success: function(data) {
+        $('.interested')[0].outerHTML = data;
+    }});
+  }
+  function mygenre(e) {
+    $.ajax({url: e.target.href,success: function(data) {
+        $('.mygenrefield')[0].outerHTML = data;
+    }});
+  }
+  function mydatefield(e) {
+    $.ajax({url: e.target.href,success: function(data) {
+        $('.mydatefield')[0].outerHTML = data;
+    }});
+  }
+  
+</script>

@@ -1,0 +1,47 @@
+<%= form_with(model: bar_a_ongle, local: true) do |form| %>
+  <% if bar_a_ongle.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bar_a_ongle.errors.count, "error") %> prohibited this bar_a_ongle from being saved:</h2>
+
+      <ul>
+        <% bar_a_ongle.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :prestation_info_id %>
+    <%= form.number_field :prestation_info_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :prestationtype_id %>
+    <%= form.number_field :prestationtype_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :prestationtypecolumn %>
+    <%= form.text_field :prestationtypecolumn %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :length %>
+    <%= form.text_field :length %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

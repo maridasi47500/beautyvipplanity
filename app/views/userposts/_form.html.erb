@@ -1,0 +1,14 @@
+<%= form_with(model: userpost, url: userposts_url(userpost.id), local: true) do |form| %>
+    <%= form.hidden_field :user_ids, value: current_user.id %>
+
+  <div class="field">
+    <%# form.label :content %>
+    <%= form.text_area :content, placeholder: "Écris ton texte ici...", class: "mycontent" %>
+  </div>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :user_ids, value: current_user.id %>
+
+  <div class="actions">
+    <%= form.submit "Publier", class: "btnpublication btn btn-primary" %>
+  </div>
+<% end %>

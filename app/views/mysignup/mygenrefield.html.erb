@@ -1,0 +1,27 @@
+         <%= form_for(resource, as: resource_name, url: updateinfo_path(current_user ? current_user.id : @user), html: { class: "mygenrefield", method: :put }) do |form| %>
+               <div class="field">
+
+             <%= form.select(:genre, [['Homme','h'],['Femme','f'],['Personnalisé','p']], {selected: (current_user || @user).genrefield1}, {onchange: "$.ajax({url:'#{mygenre_path}?mygenre='+$(this).val(),type:'post',success:function(mydata){$('.myowngenre')[0].outerHTML=mydata;($('.myowngenre')[0].innerHTML == '' ? ($('.myowngenre')[1].outerHTML='') : '');},error:function(){console.log('my error');}});"}) %>
+<%if (current_user || @user).genrefield1 == 'p'%>
+               </div>
+<div class="myowngenre col-12"><%=form.select("genre", @genres, { include_blank: true })%></div>
+<div class="myowngenre col-12"><%=form.text_field("myothergenre",placeholder: "Genre (facultatif)")%></div>
+
+
+             <%else%>
+      <div class="myowngenre"></div>
+      <%end%>      
+                     <div class="field">
+<%=form.check_box :displaygenre%>
+
+<%=form.label :displaygenre, "Afficher sur mon journal"%>
+               </div>
+
+               <div class="field">
+    <%=button_tag "Annuler", onclick: "$.ajax({type:'post',url: '#{updateinfo_path(current_user ? current_user.id : @user)}?cancel=true&view=mygenrefield',success: function(data){$('.mygenrefield')[0].outerHTML=data;}});return false;"%>
+    <%=form.submit "Enregistrer", onclick: "$.ajax({type:'post',url: '#{updateinfo_path(current_user ? current_user.id : @user)}?view=mygenrefield&'+$(this).parent().parent().serialize(),success: function(data){$('.mygenrefield')[0].outerHTML=data;}});return false;"%>
+
+    </div>
+
+             <%end%>
+

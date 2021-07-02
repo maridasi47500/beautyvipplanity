@@ -1,0 +1,2 @@
+class BarAOngle < Prestation
+end

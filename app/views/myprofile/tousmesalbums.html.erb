@@ -1,0 +1,32 @@
+        <div class="row  row-cols-5 row-cols-md-5 g-4">
+<nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link " aria-current="page" href="<%=photos2_path(username: current_user.username)%>">Photos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="<%=albums1_path(username: current_user.username)%>">Albums</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+             <div class="col">
+
+            <div class="card">
+              <div class="card-body">
+             <h3 class="card-title"><%= link_to 'Créer un album', createnewalbum_path%>
+              </div>
+            </div>
+            </div>
+            <%= render current_user.albums%>
+
+
+                
+        </div>

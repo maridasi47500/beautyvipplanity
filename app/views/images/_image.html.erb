@@ -1,0 +1,6 @@
+        <%if image.is_a?(Video)%>
+
+<%=video_tag image.name,alt: image.description, controls: true, class: 'afficheimage myvid' %>
+<%else%>
+<%=image_tag image.name,alt: image.description, class: 'afficheimage' %>
+<%end%>

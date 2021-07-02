@@ -1,0 +1,37 @@
+<div class="col">
+    <div class="card ">
+<div class="mycontainer">
+    <%=link_to photo1_path(id: image.id), {class: ""} do%>
+        <%if image.is_a?(Video)%>
+
+<%=video_tag image.name,alt: image.description, controls: true, class: "card-img-top myvid myimage#{image.id}" %>
+<%else%>
+<%=image_tag image.name,alt: image.description, class: "card-img-top myimg myimage#{image.id}" %>
+<%end%>      
+                                   
+    <div class="dropdown">
+  <a href="" class="box stack-top" id="mybtn<%=image.id%>" data-bs-toggle="dropdown" aria-expanded="false">
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="mybtn<%=image.id%>">
+    <li>        
+      <a class="dropdown-item" data-id="<%=image.id%>" onclick="photo(event);return false;" href="">Définir comme photo de profil</a>
+      <a class="dropdown-item" data-id="<%=image.id%>" onclick="dlphoto(event);return false;" href="">Télécharger la photo</a>
+    
+    </li>
+
+  </ul>
+</div>
+     <%end%>
+    </div>
+        <div class="card-body ">
+
+          <p class="card-text">
+<%=image.description%>
+              
+          </p>      
+      </div>
+    </div>
+
+
+  </div>
+

@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @userpost.content %>
+</p>
+
+<%= link_to 'Edit', edit_userpost_path(@userpost) %> |
+<%= link_to 'Back', userposts_path %>

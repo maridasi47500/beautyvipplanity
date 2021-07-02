@@ -1,0 +1,21 @@
+<div class="card-header  bg-transparent border-success"><h3>Mettre à jour la photo de profil</h3><span onclick="off(event);return false;" class="close">&times;</span></div>
+
+<%= form_with(model: image, url: updatephoto_path(image.id), data: {imageid: image.id}, html: { class: " card-body d-flex align-items-center myphotos"}) do |g| %>
+
+<p class=" card-text">
+          <%=g.hidden_field :myname%>
+
+      <%=g.text_area :description, class: "mycontent"%>
+</p></br>
+<p class="card-text bg-transparent border-success">
+
+<%=render image%>
+</p></br>
+<p class="card-text bg-transparent border-success">
+
+      <a class="dropdown-item" data-myphotoid="<%=image.id%>" onclick="mylandscapenow(event);return false;" href="">Définir comme photo de profil</a>
+</p>
+    
+    <%end%>
+      
+    

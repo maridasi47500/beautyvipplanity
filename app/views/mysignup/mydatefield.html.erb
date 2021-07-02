@@ -1,0 +1,18 @@
+           <%= form_for(resource, as: resource_name, url: updateinfo_path(current_user ? current_user.id : @user), html: { class: "mydatefield", method: :put }) do |form| %>
+    
+<div class="field">
+    <%=form.date_select("dateofbirth1", order: [:day, :month], locale: :fr)%>
+
+    </div>    
+    <div class="field">
+    <%=form.date_select("dateofbirth2", start_year: 1905, order: [:year], locale: :fr)%>
+
+    </div>
+    <div class="field">
+    <%=form.submit "Annuler", onclick: "$.ajax({type:'post',url: $(this).parent().parent().attr('action')+'?cancel=true&view=mydatefield',success: function(data){$('.mydatefield')[0].outerHTML=data;}});return false;"%>
+    <%=form.submit "Enregistrer", onclick: "$.ajax({type:'post',url: $(this).parent().parent().attr('action')+'?'+$(this).parent().parent().serialize()+'&view=mydatefield&cancel=true',success: function(data){$('.mydatefield')[0].outerHTML=data;}});return false;"%>
+
+    </div>
+
+<%end%>
+

@@ -1,0 +1,15 @@
+    <div class="mynew<%=@review.id%>" hidden="true"></div>
+
+<li class="list-group-item myitems mynewcomment<%=@comment.id%>">
+            <%if @commentids.to_s == @comment.id.to_s%>
+    <%= form_with(model: @review, local: true, html: {id: "myeditingpost#{@review.id}", data: {commentid: @comment.id, id: @review.id}}) do |form| %>
+  <%= form.fields_for :comments, @comment do |image|%>
+        <%= image.text_area :content, cols: 30, onkeydown: "pressedupdatereview(event)", onkeyup: "expandTextarea(event);return false;", rows: 1, placeholder: "Commenter en tant que visiteur", class: "mycontent-comment" %>
+  <%end%>
+    <%= form.submit "Publier", class: "btnpublication btn btn-primary", hidden: true %>
+<% end %>
+            <%else%>
+
+<%=render @comment%>
+            <%end%>
+        </li>

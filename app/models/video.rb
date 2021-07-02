@@ -1,0 +1,3 @@
+class Video < Image
+  
+end

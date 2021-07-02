@@ -1,0 +1,2 @@
+<%=@user.mybio%> <%=link_to (current_user.mybio.length > 0 ? 'Ajouter une bio' : 'Editer ma bio'), addbio_path, onclick: "$.ajax({url: $(this).attr('href'),success: function(data){$('.addbio').html(data);}});return false;"%>
+

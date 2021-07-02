@@ -1,0 +1,15 @@
+              <%if @user.bannerimage%>
+              
+              <img class="photobanner card-img-top" width="100%" height="250" src="<%=@user.bannerimage%>" onerror="this.src='/assets/202105272225270200.png';" >
+              <%else%>
+              <svg class="photobanner bd-placeholder-img bd-placeholder-img-lg img-fluid"  width="100%" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Photo de famille ou de milieu naturel" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Photo de famille ou de milieu naturel</text></svg>
+              <%end%>
+              
+                            <%if !@user.imagepath%>
+
+              <svg class="photodeprofil bd-placeholder-img bd-placeholder-img-lg img-fluid rounded-circle" width="100" height="100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Portrait" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="20%" y="50%" fill="#dee2e6" dy=".3em">Portrait</text></svg>
+                <%else%>
+                            <img src="<%=@user.imagepath%>" onclick="myprofilephotos(event);return false;" onerror="this.src='/assets/men.png';" onmouseenter="hoverppicenter(event);return false;" onmouseout="hoverppicout(event);return false;"  class="photodeprofil rounded-circle" width="100" height="100" id="myimage"/>
+
+              <%end%>
+                            <div class="btnchangeprofilephoto"><%=link_to "Changer la photo de paysage", "", class: "btn btn-secondary", onclick: "photos(event);return false;"%></div>

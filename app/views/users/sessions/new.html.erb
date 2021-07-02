@@ -1,0 +1,19 @@
+
+
+<%= form_for(resource, as: resource_name, url: createlogin_path(resource_name)) do |f| %>
+  <p class=" card-text myloginfieldscont" >
+    <%#= f.label :email %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Adresse e-mail ou numéro de tél.", class: "myloginfield" %>
+  </p>
+
+  <p class="card-text myloginfieldscont">
+    <% #  f.label :password %>
+    <%= f.password_field :password, autocomplete: "current-password",placeholder: "Mot de passe", class: "myloginfield" %>
+  </p>
+
+    <%= f.submit "Connexion", class: " btn btn-primary btnpublication myloginfield myloginfieldscont" %>
+<% end %>
+
+  
+<%#= render "users/shared/links" %>                
+                      

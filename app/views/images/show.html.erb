@@ -1,0 +1,25 @@
+    <main class="d-flex align-items-center col-md-9 ms-sm-auto col-lg-10 px-md-4 ">
+                  <nav class="mynav1 navbar navbar-dark bg-dark">
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+<%=link_to :back, {class: "nav-link"} do%><%=image_tag "/assets/cross.png", onclick: "goBack();return false;", class: "close", width: '30', height: '30'%><%end%>
+      </li>
+    </ul>
+</nav>
+
+        <%=image_tag @image.name, class:"imagedisplayed"%>
+    </main>
+       <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item adddesc">
+              <%=@image.description%>
+              <br/>
+              <%=link_to ('Editer ma description'), adddesc_path(@image.id), onclick: "$.ajax({url: $(this).attr('href'),success: function(data){$('.adddesc').html(data);}});return false;"%></p>
+
+          </li>
+        </ul>
+
+      </div>
+    </nav>

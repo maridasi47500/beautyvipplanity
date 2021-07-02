@@ -1,0 +1,26 @@
+        <div class="row  row-cols-1 row-cols-md-2 g-4">
+          <div class="col">
+
+               <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Recommanderiez-vous Beauty vip La Garde Hyères ?</h5>
+                <p class="card-text">
+                    <%=link_to "oui", recommend_reviews_path, onclick: "on(event);$.ajax({url: $(this).attr('href'),success: function(data){$('.myformpost').html(data);}});return false;", class: "btn btn-primary"%>
+                    <%=link_to "non", enhance_reviews_path, onclick: "on(event);$.ajax({url: $(this).attr('href'),success: function(data){$('.myformpost').html(data);}});return false;", class: "btn btn-primary"%>
+                
+                </p>              </div>
+            </div>
+            </div>
+          <div class="col">
+
+<p id="notice"><%= notice %></p>
+
+
+    <% @reviews.each do |post| %>
+     <%= render post %>
+    <% end %>
+
+
+                                 </div>
+
+        </div>

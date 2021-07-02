@@ -1,0 +1,15 @@
+<div class="col">
+    <div class="card">
+         <%=link_to my_album_path(username: current_user.username, id: album.id) do%>
+
+      <img src="<%=album.images[0].name%>" class="card-img-top" alt="...">
+      <div class="card-body">
+          <p class="card-text">
+<%=album.title%>
+              
+          </p>      
+      </div>
+      <%end%>
+    </div>
+  </div>
+
